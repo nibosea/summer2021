@@ -1,0 +1,174 @@
+CREATE (g:Guild{name:'にゃ'})
+城を作る
+CREATE (:Castle{name:'カザン'})
+CREATE (:Castle{name:'カトウ'})
+CREATE (:Castle{name:'カダイ'})
+CREATE (:Castle{name:'ボクヤ'})
+CREATE (:Castle{name:'シスイカン'})
+CREATE (:Castle{name:'カンチュウ'})
+CREATE (:Castle{name:'ドウカン'})
+CREATE (:Castle{name:'カンコクカン'})
+CREATE (:Castle{name:'ラクヨウ'})
+CREATE (:Castle{name:'スウザン'})
+CREATE (:Castle{name:'サイジョウ'})
+CREATE (:Castle{name:'ケイヨウ'})
+CREATE (:Castle{name:'ブカン'})
+CREATE (:Castle{name:'コロウカン'})
+CREATE (:Castle{name:'コウノウ'})
+CREATE (:Castle{name:'ジョウヨウ'})
+CREATE (:Castle{name:'エンジョウ'})
+CREATE (:Castle{name:'ハンジョウ'})
+CREATE (:Castle{name:'ロヨウ'})
+
+城の所属同盟を記述する
+MATCH (n:Castle) where n.name ='カザン' SET n.who = 'キンジョウコウキ'
+
+MATCH (n:Castle) where n.name = 'カザン' SET n.who = '山桜';
+MATCH (n:Castle) where n.name = 'カトウ' SET n.who = '山桜';
+MATCH (n:Castle) where n.name = 'カダイ' SET n.who = 'エリュシオン';
+MATCH (n:Castle) where n.name = 'ボクヤ' SET n.who = 'エリュシオン';
+MATCH (n:Castle) where n.name = 'シスイカン' SET n.who ='エリュシオン';
+MATCH (n:Castle) where n.name = 'カンチュウ' SET n.who ='エリュシオン';
+MATCH (n:Castle) where n.name = 'ドウカン' SET n.who = '木陰のパン屋';
+MATCH (n:Castle) where n.name = 'カンコクカン' SET n.who ='エリュシオン';
+MATCH (n:Castle) where n.name = 'ラクヨウ' SET n.who = 'エリュシオン';
+MATCH (n:Castle) where n.name = 'スウザン' SET n.who = 'エリュシオン';
+MATCH (n:Castle) where n.name = 'サイジョウ' SET n.who ='月夜の宴';
+MATCH (n:Castle) where n.name = 'ケイヨウ' SET n.who = '木陰のパン屋';
+MATCH (n:Castle) where n.name = 'ブカン' SET n.who = 'エリュシオン';
+MATCH (n:Castle) where n.name = 'コロウカン' SET n.who = 'エリュシオン';
+MATCH (n:Castle) where n.name = 'コウノウ' SET n.who = '月夜の宴';
+MATCH (n:Castle) where n.name = 'ジョウヨウ' SET n.who ='ゆぐどらしる';
+MATCH (n:Castle) where n.name = 'エンジョウ' SET n.who ='かもねぎ';
+MATCH (n:Castle) where n.name = 'ハンジョウ' SET n.who ='王者・暁';
+MATCH (n:Castle) where n.name = 'ロヨウ' SET n.who = '王者・暁';
+山桜
+山桜
+エリュシオン
+エリュシオン
+エリュシオン
+エリュシオン
+木陰のパン屋
+エリュシオン
+エリュシオン 
+エリュシオン
+月夜の宴
+木陰のパン屋
+エリュシオン
+エリュシオン
+月夜の宴
+ゆぐどらしる
+かもねぎ
+王者・暁
+王者・暁
+
+- 城 belongs 同盟
+MATCH (n:Guild),(m:Castle) where n.name=m.who CREATE (m)-[:belongs]->(n); 
+
+- Castle Attack Doumei
+MATCH (n:Guild),(m:Castle) where m.name='' and n.name='' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name='カザン' and n.name='暇人の本気' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name='カトウ' and n.name='豆お餅' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name='カダイ' and n.name='山桜' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name='ボクヤ' and n.name='しげ' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name='カンチュウ' and n.name='山桜' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name='ドウカン' and n.name='豆お餅' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name='カンコクカン' and n.name='木陰のパン屋' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name='スウザン' and n.name='しげ' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name='サイジョウ' and n.name='ゆぐどらしる' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name='ケイヨウ' and n.name='月夜の宴' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name='ジョウヨウ' and n.name='かもねぎ' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name='コウノウ' and n.name='にゃ' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name='ブカン' and n.name='王者・暁' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name='コロウカン' and n.name='王者・暁' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name='エンジョウ' and n.name='ゆぐどらしる' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name='ハンジョウ' and n.name='かもねぎ' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name='ロヨウ' and n.name='エリュシオン' CREATE (n)-[:attack]->(m);
+
+- お城の変更
+MATCH (n:Castle) where n.name = 'カザン' SET n.who = '山桜';
+MATCH (n:Castle) where n.name = 'カトウ' SET n.who = '山桜';
+MATCH (n:Castle) where n.name = 'カダイ' SET n.who = '山桜';
+MATCH (n:Castle) where n.name = 'ボクヤ' SET n.who = 'エリュシオン';
+MATCH (n:Castle) where n.name = 'シスイカン' SET n.who ='エリュシオン';
+MATCH (n:Castle) where n.name = 'カンチュウ' SET n.who ='山桜';
+MATCH (n:Castle) where n.name = 'ドウカン' SET n.who = '木陰のパン屋';
+MATCH (n:Castle) where n.name = 'カンコクカン' SET n.who ='エリュシオン';
+MATCH (n:Castle) where n.name = 'ラクヨウ' SET n.who = 'エリュシオン';
+MATCH (n:Castle) where n.name = 'スウザン' SET n.who = 'エリュシオン';
+MATCH (n:Castle) where n.name = 'サイジョウ' SET n.who ='ゆぐどらしる';
+MATCH (n:Castle) where n.name = 'ケイヨウ' SET n.who = '月夜の宴';
+MATCH (n:Castle) where n.name = 'ブカン' SET n.who = '王者・暁';
+MATCH (n:Castle) where n.name = 'コロウカン' SET n.who = '王者・暁';
+MATCH (n:Castle) where n.name = 'コウノウ' SET n.who = 'にゃ';
+MATCH (n:Castle) where n.name = 'ジョウヨウ' SET n.who ='ゆぐどらしる';
+MATCH (n:Castle) where n.name = 'エンジョウ' SET n.who ='ゆぐどらしる';
+MATCH (n:Castle) where n.name = 'ハンジョウ' SET n.who ='かもねぎ';
+MATCH (n:Castle) where n.name = 'ロヨウ' SET n.who = 'エリュシオン';
+
+- Attackノードを消す
+
+MATCH ()-[e]->() DELETE e;
+MATCH (n:Guild),(m:Castle) where n.name=m.who CREATE (m)-[:belongs]->(n); 
+
+- リレーションを消す
+MATCH ()-[e]->() DELETE e
+
+MATCH (n:Guild),(m:Castle) where n.name=m.who CREATE (m)-[:belongs]->(n); 
+
+- (n)-[:Attack]->(m)
+MATCH (n:Guild),(m:Castle) where m.name = 'カザン' and n.name='豆お餅' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name = 'カトウ' and n.name='豆お餅' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name = 'カダイ' and n.name='木陰のパン屋' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name = 'ボクヤ' and n.name='しげ' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name = 'シスイカン' and n.name='山桜' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name = 'カンチュウ' and n.name='ゆぐどらしる' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name = 'ドウカン' and n.name='山桜' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name = 'カンコクカン' and n.name='月夜の宴' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name = 'ラクヨウ' and n.name='王者・暁' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name = 'スウザン' and n.name='王者・暁' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name = 'サイジョウ' and n.name='月夜の宴' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name = 'ケイヨウ' and n.name='木陰のパン屋' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name = 'ブカン' and n.name='エリュシオン' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name = 'コロウカン' and n.name='エリュシオン' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name = 'コウノウ' and n.name='ゆぐどらしる' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name = 'ジョウヨウ' and n.name='にゃ' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name = 'エンジョウ' and n.name='かもねぎ' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name = 'ハンジョウ' and n.name='暇人の本気' CREATE (n)-[:attack]->(m);
+MATCH (n:Guild),(m:Castle) where m.name = 'ロヨウ' and n.name='出入り自由' CREATE (n)-[:attack]->(m);
+
+and n.name='豆お餅' (n)-[:attack]-(m);
+and n.name='豆お餅' (n)-[:attack]-(m);
+and n.name='木陰のパン屋' (n)-[:attack]-(m);
+and n.name='しげ' (n)-[:attack]-(m);
+and n.name='山桜' (n)-[:attack]-(m);
+and n.name='ゆぐどらしる' (n)-[:attack]-(m);
+and n.name='山桜' (n)-[:attack]-(m);
+and n.name='月夜の宴' (n)-[:attack]-(m);
+and n.name='王者・暁' (n)-[:attack]-(m);
+and n.name='王者・暁' (n)-[:attack]-(m);
+and n.name='月夜の宴' (n)-[:attack]-(m);
+and n.name='木陰のパン屋' (n)-[:attack]-(m);
+and n.name='エリュシオン' (n)-[:attack]-(m);
+and n.name='エリュシオン' (n)-[:attack]-(m);
+and n.name='ゆぐどらしる' (n)-[:attack]-(m);
+and n.name='にゃ' (n)-[:attack]-(m);
+and n.name='かもねぎ' (n)-[:attack]-(m);
+and n.name='暇人の本気' (n)-[:attack]-(m);
+and n.name='出入り自由' (n)-[:attack]-(m);
+
+
+
+MATCH (m:Guild),(n:Castle) where n.name = 'カザン' set m.who='豆お餅';
+MATCH (m:Guild),(n:Castle) where n.name = 'カトウ' set m.who='豆お餅';
+MATCH (m:Guild),(n:Castle) where n.name = 'カダイ' set m.who='木陰のパン屋';
+MATCH (m:Guild),(n:Castle) where n.name = 'ボクヤ' set m.who='しげ';
+MATCH (m:Guild),(n:Castle) where n.name = 'カンチュウ' set m.who='ゆぐどらしる';
+MATCH (m:Guild),(n:Castle) where n.name = 'ドウカン' set m.who='山桜';
+MATCH (m:Guild),(n:Castle) where n.name = 'ラクヨウ' set m.who='王者・暁';
+MATCH (m:Guild),(n:Castle) where n.name = 'ケイヨウ' set m.who='木陰のパン屋';
+MATCH (m:Guild),(n:Castle) where n.name = 'ブカン' set m.who='エリュシオン';
+MATCH (m:Guild),(n:Castle) where n.name = 'コロウカン' set m.who='エリュシオン';
+MATCH (m:Guild),(n:Castle) where n.name = 'コウノウ' set m.who='ゆぐどらしる';
+MATCH (m:Guild),(n:Castle) where n.name = 'エンジョウ' set m.who='かもねぎ';
+MATCH (m:Guild),(n:Castle) where n.name = 'ハンジョウ' set m.who='暇人の本気';
